@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const upload = require("../middleware/upload");
+const {upload,uploadOnCloudinary} = require("../middleware/upload");
 const {
   createProduct,
   getProducts,
@@ -8,9 +8,9 @@ const {
   deleteProduct
 } = require("../controllers/productController");
 
-router.post("/", upload.single("image"), createProduct);
+router.post("/upload", upload.single("image"), uploadOnCloudinary, createProduct);
 router.get("/", getProducts);
 router.put("/:id", upload.single("image"), updateProduct);
-router.delete("/:id", deleteProduct);
+router.delete("/delete/:id", deleteProduct);
 
 module.exports = router;

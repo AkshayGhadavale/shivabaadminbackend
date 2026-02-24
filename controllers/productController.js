@@ -5,7 +5,7 @@ exports.createProduct = async (req, res) => {
   try {
     const newProduct = new Product({
       ...req.body,
-      image: req.file ? req.file.filename : "",
+      image: req.cloudinaryUrl ? req.cloudinaryUrl : "",
     });
 
     const saved = await newProduct.save();
